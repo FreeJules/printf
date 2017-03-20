@@ -1,6 +1,7 @@
 #include "holberton.h"
 #include <stdarg.h>
 #include <stdlib.h>
+#include <stdio.h>
 /**
  * cpy_int - moves int to buffer at index
  * @list: list of args
@@ -66,8 +67,7 @@ int cpy_string(va_list list, char *buffer, int index)
 	s = va_arg(list, char *);
 	for (i = 0; s[i] != '\0'; i++, index++)
 		buffer[index] = s[i];
-	index--;
-	return (index);
+	return (index - 1);
 }
 /**
  * cpy_char - moves char to buffer at index
@@ -121,7 +121,7 @@ int _printf(const char *format, ...)
 	while (format && format[i] != '\0')
 	{
 		if (format[i] != '%')
-			buffer[i] = format[i];
+			buffer[index] = format[i];
 		else
 		{
 			i++;
