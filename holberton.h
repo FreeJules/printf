@@ -14,6 +14,7 @@ void _strprint(char *str);
 int cpy_rev(va_list list, char *buffer, int index);
 int cpy_char(va_list list, char *buffer, int index);
 int cpy_string(va_list list, char *buffer, int index);
+int cpy_bin(va_list list, char *buffer, int index);
 
 int cpy_int(va_list list, char *buffer, int index);
 int cpy_ui(va_list list, char *buffer, int index);

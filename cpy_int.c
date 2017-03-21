@@ -102,7 +102,7 @@ int cpy_hex(va_list list, char *buffer, int index)
 	int i;
 
 	num = va_arg(list, long int);
-	hex = malloc(sizeof(char) * 9);
+	hex = malloc(sizeof(char) * 8);
 	i = 0;
 	while (num > 0)
 	{
@@ -132,7 +132,7 @@ int cpy_HEX(va_list list, char *buffer, int index)
 	int i;
 
 	num = va_arg(list, long int);
-	hex = malloc(sizeof(char) * 9);
+	hex = malloc(sizeof(char) * 8);
 	i = 0;
 	while (num > 0)
 	{
@@ -162,7 +162,7 @@ int cpy_oct(va_list list, char *buffer, int index)
 	int i;
 
 	num = va_arg(list, long int);
-	oct = malloc(sizeof(char) * 12);
+	oct = malloc(sizeof(char) * 11);
 	i = 0;
 	while (num > 0)
 	{

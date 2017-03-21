@@ -28,6 +28,7 @@ int _printf(const char *format, ...)
 		{'o', cpy_oct},
 		{'u', cpy_ui},
 		{'r', cpy_rev},
+		{'b', cpy_bin},
 		{'\0', NULL}
 	};
 	char buffer[1024];

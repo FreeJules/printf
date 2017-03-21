@@ -49,3 +49,24 @@ int cpy_rev(va_list list, char *buffer, int index)
 		buffer[index] = str[i];
 	return (index - 1);
 }
+/**
+ * cpy_bin - moves number to binary and then to buffer at index
+ * @list: list of args
+ * @buffer: array of chars to copy to
+ * @index: index of buffer to start
+ * Return: index
+ */
+int cpy_bin(va_list list, char *buffer, int index)
+{
+	unsigned int num, i;
+
+	num = va_arg(list, unsigned int);
+	for (i = 1 << 31; i > 0; i = i / 2, index++)
+	{
+		if (num & i)
+			buffer[index] = '1';
+		else
+			buffer[index] = '0';
+	}
+	return (index - 1);
+}
