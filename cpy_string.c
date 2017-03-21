@@ -77,7 +77,7 @@ int cpy_bin(va_list list, char *buffer, int index)
 	char *bin;
 
 	num = va_arg(list, unsigned int);
-	bin = malloc(sizeof(char) * 65);
+	bin = malloc(sizeof(char) * 64);
 	if (bin == NULL)
 		return (index);
 	i = 0;
@@ -114,6 +114,8 @@ int cpy_rot13(va_list list, char *buffer, int index)
 	char n[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
 
 	rot13 = va_arg(list, char *);
+	if (rot13 == NULL)
+		return (index);
 	for (i = 0; rot13[i] != '\0'; i++)
 	{
 		for (j = 0; j < 52; j++)
