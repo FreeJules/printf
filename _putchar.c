@@ -56,40 +56,10 @@ int _strlen(char *s)
 /**
  * _putchar - writes the character c to stdout
  * @c: The character to print
- *
  * Return: On success 1.
  * On error, -1 is returned, and errno is set appropriately.
  */
 int _putchar(char c)
 {
 	return (write(1, &c, 1));
-}
-/**
- * rev_string - reverses a string
- * @s: pointer to string
- * Return: none
- */
-void rev_string(char *s)
-{
-	int i, count;
-	char swap;
-
-	if (*s != '\0')
-	{
-		count = 0;
-		while (*(s + count) != '\0')
-		{
-			count++;
-		}
-		i = 0;
-		count = count - 1;
-		while (i <= count)
-		{
-			swap = *(s + i);     /* swap = first */
-			*(s + i) = *(s + count); /* first = last */
-			*(s + count) = swap; /* last = swap (first) */
-			i++;
-			count--;
-		}
-	}
 }

@@ -10,7 +10,17 @@ int _putchar(char);
 int _strlen(char *);
 char *_strcpy(char *dest, char *src);
 void _strprint(char *str);
-void rev_string(char *s);
+
+int cpy_rev(va_list list, char *buffer, int index);
+int cpy_char(va_list list, char *buffer, int index);
+int cpy_string(va_list list, char *buffer, int index);
+
+int cpy_int(va_list list, char *buffer, int index);
+int cpy_ui(va_list list, char *buffer, int index);
+int cpy_HEX(va_list list, char *buffer, int index);
+int cpy_hex(va_list list, char *buffer, int index);
+int cpy_oct(va_list list, char *buffer, int index);
+
 int _printf(const char *format, ...);
 /**
  * struct format - list of conversion specifiers to arguments
@@ -23,7 +33,4 @@ typedef struct format
 	char c;
 	int (*f)();
 } format_t;
-int cpy_HEX(va_list list, char *buffer, int index);
-int cpy_hex(va_list list, char *buffer, int index);
-int cpy_oct(va_list list, char *buffer, int index);
 #endif
