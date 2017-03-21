@@ -30,6 +30,7 @@ int _printf(const char *format, ...)
 		{'r', cpy_rev},
 		{'R', cpy_rot13},
 		{'b', cpy_bin},
+		{'S', cpy_special},
 		{'\0', NULL}
 	};
 	char buffer[1024];

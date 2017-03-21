@@ -5,6 +5,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <stdint.h>
 
 int _putchar(char);
 int _strlen(char *);
@@ -22,6 +23,8 @@ int cpy_ui(va_list list, char *buffer, int index);
 int cpy_HEX(va_list list, char *buffer, int index);
 int cpy_hex(va_list list, char *buffer, int index);
 int cpy_oct(va_list list, char *buffer, int index);
+
+int cpy_special(va_list list, char *buffer, int index);
 
 int _printf(const char *format, ...);
 /**
