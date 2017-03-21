@@ -66,6 +66,8 @@ int _printf(const char *format, ...)
 					index = (specifiers + j)->f(list, buffer, index);
 				j++;
 			}
+			if ((specifiers + j)->c == '\0' && format[i] == '%')
+				buffer[index] = format[i];
 		}
 		i++;
 		index++;
