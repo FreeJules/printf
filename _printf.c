@@ -1,7 +1,4 @@
 #include "holberton.h"
-#include <stdarg.h>
-#include <stdlib.h>
-#include <stdio.h>
 /**
  * cpy_int - moves int to buffer at index
  * @list: list of args
@@ -108,6 +105,9 @@ int _printf(const char *format, ...)
 		{'s', cpy_string},
 		{'d', cpy_int},
 		{'i', cpy_int},
+		{'x', cpy_hex},
+		{'X', cpy_HEX},
+		{'o', cpy_oct},
 		{'\0', NULL}
 	};
 	char buffer[1024];
