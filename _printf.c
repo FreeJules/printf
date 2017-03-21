@@ -28,6 +28,7 @@ int _printf(const char *format, ...)
 		{'o', cpy_oct},
 		{'u', cpy_ui},
 		{'r', cpy_rev},
+		{'R', cpy_rot13},
 		{'b', cpy_bin},
 		{'\0', NULL}
 	};
