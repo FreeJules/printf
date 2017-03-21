@@ -13,7 +13,11 @@ int cpy_string(va_list list, char *buffer, int index)
 
 	s = va_arg(list, char *);
 	for (i = 0; s[i] != '\0'; i++, index++)
+	{
+		if (index == 1024)
+			index = buffer_full(buffer);
 		buffer[index] = s[i];
+	}
 	return (index - 1);
 }
 /**
@@ -28,6 +32,8 @@ int cpy_char(va_list list, char *buffer, int index)
 	char s;
 
 	s = va_arg(list, int);
+	if (index == 1024)
+		index = buffer_full(buffer);
 	buffer[index] = s;
 	return (index);
 }
@@ -46,7 +52,11 @@ int cpy_rev(va_list list, char *buffer, int index)
 	str = va_arg(list, char *);
 	len  = _strlen(str);
 	for (i = len - 1; i >= 0; i--, index++)
+	{
+		if (index == 1024)
+			index = buffer_full(buffer);
 		buffer[index] = str[i];
+	}
 	return (index - 1);
 }
 /**
@@ -58,15 +68,30 @@ int cpy_rev(va_list list, char *buffer, int index)
  */
 int cpy_bin(va_list list, char *buffer, int index)
 {
-	unsigned int num, i;
+	unsigned int num;
+	int i;
+	char *bin;
 
 	num = va_arg(list, unsigned int);
-	for (i = 1 << 31; i > 0; i = i / 2, index++)
+	bin = malloc(sizeof(char) * 65);
+	if (bin == NULL)
+		return (index);
+	i = 0;
+	while (num > 0)
 	{
-		if (num & i)
-			buffer[index] = '1';
+		if (num % 2 == 0)
+			bin[i] = '0';
 		else
-			buffer[index] = '0';
+			bin[i] = '1';
+		num = num / 2;
+		i++;
+	}
+	bin[i] = '\0';
+	for (i = i - 1; i >= 0; i--, index++)
+	{
+		if (index == 1024)
+			index = buffer_full(buffer);
+		buffer[index] = bin[i];
 	}
 	return (index - 1);
 }
@@ -95,6 +120,10 @@ int cpy_rot13(va_list list, char *buffer, int index)
 			}
 	}
 	for (i = 0; rot13[i] != '\0'; i++, index++)
+	{
+		if (index == 1024)
+			index = buffer_full(buffer);
 		buffer[index] = rot13[i];
+	}
 	return (index - 1);
 }

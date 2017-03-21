@@ -1,5 +1,16 @@
 #include "holberton.h"
 /**
+ * buffer_full - sets all the chars in buffer to 0
+ * @buffer: buffer print and reset
+ * Return: index 0
+ */
+int buffer_full(char *buffer)
+{
+	_strprint(buffer);
+	clear_buffer(buffer);
+	return (0);
+}
+/**
  * clear_buffer - sets all the chars in buffer to 0
  * @buffer: buffer to reset
  * Return: nothing

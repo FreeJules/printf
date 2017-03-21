@@ -27,6 +27,8 @@ int cpy_oct(va_list list, char *buffer, int index);
 int cpy_special(va_list list, char *buffer, int index);
 
 int _printf(const char *format, ...);
+void clear_buffer(char *);
+int buffer_full(char *);
 /**
  * struct format - list of conversion specifiers to arguments
  *
