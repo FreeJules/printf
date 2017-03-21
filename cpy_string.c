@@ -77,6 +77,13 @@ int cpy_bin(va_list list, char *buffer, int index)
 	char *bin;
 
 	num = va_arg(list, unsigned int);
+	if (num == 0)
+	{
+		if (index == 1024)
+			index = buffer_full(buffer);
+		buffer[index] = '0';
+		return (index);
+	}
 	bin = malloc(sizeof(char) * 64);
 	if (bin == NULL)
 		return (index);
