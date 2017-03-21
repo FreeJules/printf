@@ -1,0 +1,69 @@
+.TH man 3 "21 March 2017" "0.12" "_printf man page"
+.SH NAME
+.B _printf
+- behaves as printf
+.SH SYNOPSIS
+#include <stdio.h>
+
+int _printf(const char *format, ...);
+
+.SH DESCRIPTION
+_printf is a function that produces output according to a format
+
+.B Return value
+
+Upon  successful  return,  this  function  returns  the  number of characters printed (excluding the null byte used to end output to strings).
+
+.B The conversion specifier
+
+A character that specifies the type of conversion to be applied. The conversion specifiers and their meanings are:
+
+.B b
+
+The int argument is converted to binary notation.
+
+.B d, i
+
+The int argument is converted to signed decimal notation.
+
+.B o, u, x, X
+
+The unsigned int argument is converted to unsigned octal (o), unsigned decimal (u), or unsigned hexadecimal (x and X) notation. The letters abcdef are used for x conversions; the letters ABCDEF are used for X conversions.
+
+.B c
+
+The int argument is converted to an unsigned char, and the resulting character is written.
+
+.B s
+
+The const char * argument is expected to be a pointer to an array of character type (pointer to a string). Characters from the array are written up to (but not including) a terminating null byte ('\0').
+
+.B S
+
+The char * argument is converted to be a pointer to an array of character type (pointer to a string). Non printable characters (0 < ASCII value < 32 or >= 127) are printed this way: \x, followed by the ASCII code value in hexadecimal (upper case - always 2 characters)
+
+.B p
+
+The void * pointer argument is printed in hexadecimal (as if by %#x or %#lx).
+
+.B r
+
+The char * argument is converted to be a pointer to an array of character type (pointer to a string) printed in reverse.
+
+.B R
+
+The char * argument is expected to be a pointer to an array of character type (pointer to a string) printed in ROT13. ROT13 ("rotate by 13 places", sometimes hyphenated ROT-13) is a simple letter substitution cipher that replaces a letter with the letter 13 letters after it in the alphabet
+
+.B %
+
+A '%' is written. No argument is converted. The complete conversion specification is '%%'.
+
+.SH OPTIONS
+.B _printf
+does not take any options
+.SH SEE ALSO
+.I printf(3)
+.SH BUGS
+Probably quite a few bugs.
+.SH AUTHOR
+Julija Lee, Galina Veratsennik
