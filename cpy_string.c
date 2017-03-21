@@ -12,6 +12,8 @@ int cpy_string(va_list list, char *buffer, int index)
 	char *s;
 
 	s = va_arg(list, char *);
+	if (s == NULL)
+		s = "(null)";
 	for (i = 0; s[i] != '\0'; i++, index++)
 	{
 		if (index == 1024)
@@ -32,6 +34,8 @@ int cpy_char(va_list list, char *buffer, int index)
 	char s;
 
 	s = va_arg(list, int);
+	if (s == '\0')
+		return (index - 1);
 	if (index == 1024)
 		index = buffer_full(buffer);
 	buffer[index] = s;
