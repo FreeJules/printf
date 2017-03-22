@@ -122,15 +122,18 @@ int cpy_rot13(va_list list, char *buffer, int index)
 
 	rot13 = va_arg(list, char *);
 	if (rot13 == NULL)
-		return (index);
-	for (i = 0; rot13[i] != '\0'; i++)
+		rot13 = "(null)";
+	else
 	{
-		for (j = 0; j < 52; j++)
-			if (rot13[i] == a[j])
-			{
-				rot13[i] = n[j];
-				break;
-			}
+		for (i = 0; rot13[i] != '\0'; i++)
+		{
+			for (j = 0; j < 52; j++)
+				if (rot13[i] == a[j])
+				{
+					rot13[i] = n[j];
+					break;
+				}
+		}
 	}
 	for (i = 0; rot13[i] != '\0'; i++, index++)
 	{

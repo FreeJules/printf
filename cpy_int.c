@@ -101,11 +101,18 @@ int cpy_ui(va_list list, char *buffer, int index)
  */
 int cpy_hex(va_list list, char *buffer, int index)
 {
-	long int num, tmp;
+	unsigned int num, tmp;
 	char *hex;
 	int i;
 
-	num = va_arg(list, long int);
+	num = va_arg(list, unsigned int);
+	if (num == 0)
+	{
+		if (index == 1024)
+			index = buffer_full(buffer);
+		buffer[index] = '0';
+		return (index);
+	}
 	hex = malloc(sizeof(char) * 16);
 	if (hex == NULL)
 		return (index);
@@ -138,11 +145,18 @@ int cpy_hex(va_list list, char *buffer, int index)
  */
 int cpy_HEX(va_list list, char *buffer, int index)
 {
-	long int num, tmp;
+	unsigned int num, tmp;
 	char *hex;
 	int i;
 
-	num = va_arg(list, long int);
+	num = va_arg(list, unsigned int);
+	if (num == 0)
+	{
+		if (index == 1024)
+			index = buffer_full(buffer);
+		buffer[index] = '0';
+		return (index);
+	}
 	hex = malloc(sizeof(char) * 16);
 	if (hex == NULL)
 		return (index);
@@ -175,11 +189,18 @@ int cpy_HEX(va_list list, char *buffer, int index)
  */
 int cpy_oct(va_list list, char *buffer, int index)
 {
-	long int num;
+	unsigned int num;
 	char *oct;
 	int i;
 
-	num = va_arg(list, long int);
+	num = va_arg(list, unsigned int);
+	if (num == 0)
+	{
+		if (index == 1024)
+			index = buffer_full(buffer);
+		buffer[index] = '0';
+		return (index);
+	}
 	oct = malloc(sizeof(char) * 21);
 	if (oct == NULL)
 		return (index);
