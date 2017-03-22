@@ -1,4 +1,5 @@
 #include "holberton.h"
+#include <stdio.h>
 /**
  * cpy_string - moves string to buffer
  * @list: list of args
@@ -117,8 +118,8 @@ int cpy_rot13(va_list list, char *buffer, int index)
 {
 	char *rot13;
 	int i, j;
-	char a[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-	char n[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
+	char a[] = "ABCDEFGHIJKLMabcdefghijklm ,?!;'@-=+\"\\$%^&*()`~<>/:[]{}_|.\n";
+	char n[] = "NOPQRSTUVWXYZnopqrstuvwxyz ,?!;'@-=+\"\\$%^&*()`~<>/:[]{}_|.\n";
 
 	rot13 = va_arg(list, char *);
 	if (rot13 == NULL)
@@ -127,19 +128,23 @@ int cpy_rot13(va_list list, char *buffer, int index)
 	{
 		for (i = 0; rot13[i] != '\0'; i++)
 		{
-			for (j = 0; j < 52; j++)
+			for (j = 0; j < _strlen(a); j++)
 				if (rot13[i] == a[j])
 				{
-					rot13[i] = n[j];
-					break;
+					if (index == 1024)
+						index = buffer_full(buffer);
+					buffer[index] = n[j];
+					index++;
 				}
+				else
+					if (rot13[i] == n[j])
+					{
+						if (index == 1024)
+							index = buffer_full(buffer);
+						buffer[index] = a[j];
+						index++;
+					}
 		}
-	}
-	for (i = 0; rot13[i] != '\0'; i++, index++)
-	{
-		if (index == 1024)
-			index = buffer_full(buffer);
-		buffer[index] = rot13[i];
 	}
 	return (index - 1);
 }
