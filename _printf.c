@@ -43,27 +43,31 @@ int _printf(const char *format, ...)
 
 	clear_buffer(buffer);
 	va_start(list, format);
-	index = 0;
-	i = 0;
-	while (format && format[i] != '\0')
+	index = 0; i = 0;
+	if (!format)
+		return (-1);
+	if (format[i] == '%' && format[i + 1] == '\0')
+		return (-1);
+	while (format[i] != '\0')
 	{
 		if (format[i] != '%')
 			buffer[index] = format[i];
 		else
 		{
-			i++;
-			j = 0;
+			i++; j = 0;
 			while ((specifiers + j)->c != '\0')
 			{
 				if (format[i] == (specifiers + j)->c)
-					index = (specifiers + j)->f(list, buffer, index);
+				{
+					if ((specifiers + j)->c == '\0')
+						i--;
+					else
+						index = (specifiers + j)->f(list, buffer, index);
+				}
 				j++;
 			}
-			if ((specifiers + j)->c == '\0' && format[i] == '%')
-				buffer[index] = format[i];
 		}
-		i++;
-		index++;
+		i++; index++;
 	}
 	va_end(list);
 	_strprint(buffer);
