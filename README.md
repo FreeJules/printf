@@ -2,7 +2,40 @@
 
 ## Synopsis
 
-A re-creation of the printf function in C
+A re-creation of the printf function in C.
+Function _printf(const char *format, ...) takes in a string and produces the output according to a format as described below. The function _printf() writes output to stdout, the standard output stream. It writes the output under the control of a format string that specifies how subsequent arguments (or arguments accessed via the variable-length argument facilities of stdarg(3)) are converted for output.
+### Return Value
+Upon successful return, these functions return the number of characters printed (excluding the null byte used to end output to strings).
+### Format of the format string
+The format string is a character string, beginning and ending in its initial shift state, if any. The format string is composed of zero or more directives: 
+- ordinary characters (not %), which are copied unchanged to the output stream; 
+- and conversion specifications, each of which results in fetching zero or more subsequent arguments. 
+Each conversion specification is introduced by the character %, and ends with a conversion specifier. In between there may be (in this order) zero or more flags, an optional minimum field width, an optional precision and an optional length modifier.
+The arguments must correspond properly (after type promotion) with the conversion specifier.
+### The conversion specifier
+A character that specifies the type of conversion to be applied. The conversion specifiers and their meanings are:
+#### d, i
+The int argument is converted to signed decimal notation. The precision, if any, gives the minimum number of digits that must appear; if the converted value requires fewer digits, it is padded on the left with zeros. The default precision is 1. When 0 is printed with an explicit precision 0, the output is empty.
+#### o, u, x, X
+The unsigned int argument is converted to unsigned octal (o), unsigned decimal (u), or unsigned hexadecimal (x and X) notation. The letters abcdef are used for x conversions; the letters ABCDEF are used for X conversions. The precision, if any, gives the minimum number of digits that must appear; if the converted value requires fewer digits, it is padded on the left with zeros. The default precision is 1. When 0 is printed with an explicit precision 0, the output is empty.
+#### c
+If no l modifier is present, the int argument is converted to an unsigned char, and the resulting character is written. If an l modifier is present, the wint_t (wide character) argument is converted to a multibyte sequence by a call to the wcrtomb(3) function, with a conversion state starting in the initial state, and the resulting multibyte string is written.
+#### s
+The const char * argument is expected to be a pointer to an array of character type (pointer to a string). Characters from the array are written up to (but not including) a terminating null byte ('\0'); if a precision is specified, no more than the number specified are written. If a precision is given, no null byte need be present; if the precision is not specified, or is greater than the size of the array, the array must contain a terminating null byte.
+#### S
+Prints the string. Non printable characters (0 < ASCII value < 32 or >= 127) are printed this way: \x, followed by the ASCII code value in hexadecimal (upper case - always 2 characters)
+For:    _printf("%S\n", "Holberton\nSchool");
+Output: Holberton\x0ASchool
+#### p
+The void * pointer argument is printed in hexadecimal (as if by %#x or %#lx).
+#### r
+Prints the reversed string
+#### R
+Prints the rot13'ed string
+#### %
+A '%' is written. No argument is converted. The complete conversion specification is '%%'.
+
+
 
 ## Prep material
 
