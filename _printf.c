@@ -1,4 +1,5 @@
 #include "holberton.h"
+#include <stdio.h>
 /**
  * buffer_full - sets all the chars in buffer to 0
  * @buffer: buffer print and reset
@@ -30,18 +31,10 @@ void clear_buffer(char *buffer)
 int _printf(const char *format, ...)
 {
 	format_t specifiers[] = {
-		{'c', cpy_char},
-		{'s', cpy_string},
-		{'d', cpy_int},
-		{'i', cpy_int},
-		{'x', cpy_hex},
-		{'X', cpy_HEX},
-		{'o', cpy_oct},
-		{'u', cpy_ui},
-		{'r', cpy_rev},
-		{'R', cpy_rot13},
-		{'b', cpy_bin},
-		{'S', cpy_special},
+		{'c', cpy_char},  {'s', cpy_string},   {'d', cpy_int},
+		{'i', cpy_int},   {'x', cpy_hex},      {'X', cpy_HEX},
+		{'o', cpy_oct},   {'u', cpy_ui},       {'r', cpy_rev},
+		{'R', cpy_rot13}, {'b', cpy_bin},      {'S', cpy_special},
 		{'\0', NULL}
 	};
 	char buffer[1024];
