@@ -43,7 +43,8 @@ int _printf(const char *format, ...)
 
 	clear_buffer(buffer);
 	va_start(list, format);
-	index = 0; i = 0;
+	index = 0;
+	i = 0;
 	if (!format)
 		return (-1);
 	if (format[i] == '%' && format[i + 1] == '\0')
@@ -54,20 +55,32 @@ int _printf(const char *format, ...)
 			buffer[index] = format[i];
 		else
 		{
-			i++; j = 0;
-			while ((specifiers + j)->c != '\0')
+			i++;
+			if (format[i] == '%')
 			{
-				if (format[i] == (specifiers + j)->c)
+				buffer[index] = '%';
+			}
+			else
+			{
+				j = 0;
+				while ((specifiers + j)->c != '\0')
 				{
-					if ((specifiers + j)->c == '\0')
-						i--;
-					else
+					if (format[i] == (specifiers + j)->c)
+					{
 						index = (specifiers + j)->f(list, buffer, index);
+						break;
+					}
+					j++;
+					if ((specifiers + j)->c == '\0')
+					{
+						i--;
+						buffer[index] = format[i];
+					}
 				}
-				j++;
 			}
 		}
-		i++; index++;
+		i++;
+		index++;
 	}
 	va_end(list);
 	_strprint(buffer);
