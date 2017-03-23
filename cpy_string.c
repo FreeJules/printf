@@ -36,7 +36,7 @@ int cpy_char(va_list list, char *buffer, int index)
 
 	s = va_arg(list, int);
 	if (s == '\0')
-		return (index - 1);
+		return (index);
 	if (index == 1024)
 		index = buffer_full(buffer);
 	buffer[index] = s;
@@ -136,13 +136,14 @@ int cpy_rot13(va_list list, char *buffer, int index)
 					buffer[index] = n[j];
 					index++;
 				}
-				else if (rot13[i] == n[j])
-				{
-					if (index == 1024)
-						index = buffer_full(buffer);
-					buffer[index] = a[j];
-					index++;
-				}
+				else
+					if (rot13[i] == n[j])
+					{
+						if (index == 1024)
+							index = buffer_full(buffer);
+						buffer[index] = a[j];
+						index++;
+					}
 		}
 	}
 	return (index - 1);
